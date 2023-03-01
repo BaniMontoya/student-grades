@@ -43,6 +43,7 @@ python .\manage.py runserver
 10.-create user:  [http://127.0.0.1:8000/admin/auth/user/add/](http://127.0.0.1:8000/admin/auth/user/add/)  add is_staff option and select group student and save 
 
 11.-create student:  [http://127.0.0.1:8000/admin/api/student/add/](http://127.0.0.1:8000/admin/api/student/add/)  and select user of student 
+
 12.-give access to student group:  [http://127.0.0.1:8000/admin/auth/group/1/change/](http://127.0.0.1:8000/admin/auth/group/1/change/)  select "student asnwer view permission" 
 
 13.-create student answer:  [http://127.0.0.1:8000/admin/api/studentanswer/add/](http://127.0.0.1:8000/admin/api/studentanswer/add/)  
