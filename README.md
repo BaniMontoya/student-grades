@@ -3,9 +3,49 @@
 
 
 Instalation:
-clone this repository: https://github.com/BaniMontoya/student-grades.git
+clone this repository: 
+https://github.com/BaniMontoya/student-grades.git
+
+##create venv
+on root of project ejecute:
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
+
+##create database
 cd grades
-sh migrate.sh
+python manage.py migrate
+python manage.py makemigrations api
+python manage.py migrate  api
+
+##tests
+python .\manage.py test
+
+##create super user
+python .\manage.py createsuperuser
+choices
+username: super
+email: super@super.com
+password: 1234
+confirm: 1234
+y
+
+#run django project
+python .\manage.py runserver 
+
+#access admin panel
+http://127.0.0.1:8000/admin/login/?next=/admin/
+login with your super user
+create test: http://127.0.0.1:8000/admin/api/test/add/
+create question: http://127.0.0.1:8000/admin/api/question/add/ and select a test
+create user: http://127.0.0.1:8000/admin/auth/user/add/ add is_staff option and select group student and save
+create student: http://127.0.0.1:8000/admin/api/student/add/ and select user of student
+give acces to student group: http://127.0.0.1:8000/admin/auth/group/1/change/ select "student asnwer view permission"
+create student answer: http://127.0.0.1:8000/admin/api/studentanswer/add/
+logout
+login with your student user
+check your answer: http://127.0.0.1:8000/admin/api/studentanswer/
+
+Done!.
+
+

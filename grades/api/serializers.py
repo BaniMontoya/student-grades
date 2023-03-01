@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, Serializer
-from .models import Student
+from .models import Question, Student
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext as _
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -11,6 +11,23 @@ class StudentSerializer(ModelSerializer):
         depth = 2
         fields = '__all__'
 
+from .models import StudentAnswer
+
+
+class StudentAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentAnswer
+        fields = ['id', 'question', 'answer_text', 'student']
+        read_only_fields = ['id', 'student']
+
+    def validate_question(self, value):
+        try:
+            question = Question.objects.get(pk=value.pk)
+        except Question.DoesNotExist:
+            raise serializers.ValidationError("Question does not exist.")
+        return question
+
+        
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):

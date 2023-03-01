@@ -16,6 +16,9 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+    from django.contrib.auth.models import Group
+
+    student_group, created = Group.objects.get_or_create(name='student')
 
 
 if __name__ == '__main__':

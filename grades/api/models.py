@@ -3,6 +3,7 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     address = models.CharField(max_length=100, default="unknow")
@@ -21,6 +22,7 @@ class Test(models.Model):
     def __str__(self):
         return self.title
 
+
 class Question(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=200)
@@ -28,7 +30,8 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
-class Answer(models.Model):
+
+class StudentAnswer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=200)
